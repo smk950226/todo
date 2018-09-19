@@ -16,7 +16,7 @@ export default class App extends React.Component {
         <Text style={styles.title}>To Do</Text>
         <View style={styles.card}>
           <TextInput style={styles.input} placeholder={'새 할일'} value={newToDo} onChangeText={this._controlNewToDo} placeholderTextColor={'#999'} returnKeyType={'done'} autoCorrect={false} />
-          <ScrollView>
+          <ScrollView contentContainerStyle={styles.toDos}>
             <ToDo />
           </ScrollView>
         </View>
@@ -68,8 +68,9 @@ const styles = StyleSheet.create({
   },
   input: {
     padding: 20,
-    borderBottomColor: "#bbb",
-    borderBottomWidth: 1,
     fontSize: 25
+  },
+  toDos: {
+    alignItems: 'center'
   }
 });
