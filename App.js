@@ -36,7 +36,7 @@ export default class App extends React.Component {
           onSubmitEditing={this._addToDo}
            />
           <ScrollView contentContainerStyle={styles.toDos}>
-            {Object.values(toDos).map(toDo => <ToDo key={toDo.id} {...toDo} deleteToDo={this._deleteToDo} />)}
+            {Object.values(toDos).map(toDo => <ToDo key={toDo.id} {...toDo} deleteToDo={this._deleteToDo} uncompleteToDo={this._uncompleteToDo} completeToDo={this._completeToDo} />)}
           </ScrollView>
         </View>
       </View>
@@ -88,6 +88,36 @@ export default class App extends React.Component {
       }
       return { ...newState };
     });
+  };
+  _uncompleteToDo = (id) => {
+    this.setState(prevState => {
+      const newState = {
+        ...prevState,
+        toDos: {
+          ...prevState.toDos,
+          [id]: {
+            ...prevState.toDos[id],
+            isCompleted: false
+          }
+        }
+      }
+      return { ...newState }
+    })
+  };
+  _completeToDo = (id) => {
+    this.setState(prevState => {
+      const newState = {
+        ...prevState,
+        toDos: {
+          ...prevState.toDos,
+          [id]: {
+            ...prevState.toDos[id],
+            isCompleted: true
+          }
+        }
+      }
+      return { ...newState }
+    })
   };
 }
 
